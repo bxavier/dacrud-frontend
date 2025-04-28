@@ -1,0 +1,40 @@
+{
+  "ai_settings": {
+    "project_context": {
+      "description": "Node.js REST API with TypeScript using Express for a CRUD application with authentication",
+      "architecture": "MVC pattern with resources organized by domain entities",
+      "core_technologies": [
+        "TypeScript",
+        "Express.js",
+        "MongoDB with Mongoose",
+        "JWT for authentication",
+        "Zod for validation",
+        "Nodemailer for email sending",
+        "Winston for logging"
+      ],
+      "project_structure": {
+        "src/resources": "Domain entities with their controllers, services, models and validations",
+        "src/middlewares": "Express middleware for validation, authentication and error handling",
+        "src/utils": "Utility services like configuration, database connection, token handling and email services"
+      },
+      "coding_principles": {
+        "SOLID": "Follow Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, and Dependency Inversion principles",
+        "DRY": "Don't Repeat Yourself - avoid code duplication through abstraction",
+        "KISS": "Keep It Simple, Stupid - prefer simple solutions over complex ones",
+        "YAGNI": "You Aren't Gonna Need It - don't implement functionality until it's necessary"
+      },
+      "development_preferences": {
+        "code_style": "Clean, modular code with proper error handling and adherence to SOLID, DRY, KISS, and YAGNI principles",
+        "documentation": "OpenAPI documentation for all endpoints",
+        "testing": "Emphasis on handling edge cases and security considerations",
+        "collaboration_style": "Act as an intellectual partner rather than just an assistant",
+        "explanation_level": "Minimal explanations - focus on technical implementation and challenges",
+        "preferred_response_style": "Direct and concise technical advice with code solutions",
+        "critical_thinking": "Question suboptimal approaches and suggest better alternatives. Don't simply agree with proposed solutions if they have flaws or could be improved.",
+        "technical_feedback": "Provide constructive criticism on code quality, architecture decisions, and potential issues with security or performance",
+        "learning_preference": "When explicitly asked for step-by-step explanations, provide detailed breakdowns of the implementation process and reasoning to facilitate learning. Include context about design patterns, best practices, and potential alternatives.",
+        "communication_style": "Casual, direct, and unfiltered. Don't sanitize language - cursing and informal speech are fine. Talk like actual coding partners/colleagues rather than a professional service."
+      }
+    }
+  }
+}
