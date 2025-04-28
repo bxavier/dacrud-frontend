@@ -1,39 +1,52 @@
 {
   "ai_settings": {
     "project_context": {
-      "description": "Node.js REST API with TypeScript using Express for a CRUD application with authentication",
-      "architecture": "MVC pattern with resources organized by domain entities",
-      "core_technologies": [
-        "TypeScript",
-        "Express.js",
-        "MongoDB with Mongoose",
-        "JWT for authentication",
-        "Zod for validation",
-        "Nodemailer for email sending",
-        "Winston for logging"
-      ],
-      "project_structure": {
-        "src/resources": "Domain entities with their controllers, services, models and validations",
-        "src/middlewares": "Express middleware for validation, authentication and error handling",
-        "src/utils": "Utility services like configuration, database connection, token handling and email services"
-      },
       "coding_principles": {
-        "SOLID": "Follow Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, and Dependency Inversion principles",
-        "DRY": "Don't Repeat Yourself - avoid code duplication through abstraction",
-        "KISS": "Keep It Simple, Stupid - prefer simple solutions over complex ones",
-        "YAGNI": "You Aren't Gonna Need It - don't implement functionality until it's necessary"
+        "SOLID": "Follow SOLID principles",
+        "DRY": "Avoid code duplication",
+        "KISS": "Keep solutions simple",
+        "YAGNI": "Don't implement until necessary"
       },
-      "development_preferences": {
-        "code_style": "Clean, modular code with proper error handling and adherence to SOLID, DRY, KISS, and YAGNI principles",
-        "documentation": "OpenAPI documentation for all endpoints",
-        "testing": "Emphasis on handling edge cases and security considerations",
-        "collaboration_style": "Act as an intellectual partner rather than just an assistant",
-        "explanation_level": "Minimal explanations - focus on technical implementation and challenges",
-        "preferred_response_style": "Direct and concise technical advice with code solutions",
-        "critical_thinking": "Question suboptimal approaches and suggest better alternatives. Don't simply agree with proposed solutions if they have flaws or could be improved.",
-        "technical_feedback": "Provide constructive criticism on code quality, architecture decisions, and potential issues with security or performance",
-        "learning_preference": "When explicitly asked for step-by-step explanations, provide detailed breakdowns of the implementation process and reasoning to facilitate learning. Include context about design patterns, best practices, and potential alternatives.",
-        "communication_style": "Casual, direct, and unfiltered. Don't sanitize language - cursing and informal speech are fine. Talk like actual coding partners/colleagues rather than a professional service."
+      "architectural_approach": {
+        "simplicity": "Keep everything as simple as possible",
+        "minimal_dependencies": "Use few external libraries, prefer Angular built-ins"
+      },
+      "code_formatting": {
+        "linting": "ESLint with Angular rules",
+        "formatting": "Prettier with singleQuote, tabWidth: 2, printWidth: 100"
+      },
+      "state_management": {
+        "approach": "Use Angular signals for state",
+        "store": "Signal-based stores instead of NGRX/Redux"
+      },
+      "ui_framework": {
+        "library": "Angular Material",
+        "theme": "Magenta/Violet prebuilt theme",
+        "typography": "Use Material global typography styles",
+        "pattern": "Follow Material Design guidelines and patterns"
+      },
+      "angular_architecture": {
+        "component_pattern": {
+          "approach": "Container/Presentational pattern",
+          "change_detection": "OnPush change detection",
+          "inputs": "Use signal-based input()"
+        },
+        "folder_structure": {
+          "organization": "Feature-based by domain",
+          "layout": "core/, shared/, features/, data-access/"
+        },
+        "route_strategy": {
+          "lazy_loading": "Lazy load routes",
+          "standalone": "Use standalone components"
+        },
+        "api_pattern": {
+          "service_abstraction": "API services in data-access layer",
+          "signal_conversion": "Convert observables to signals at edge"
+        },
+        "store_pattern": {
+          "implementation": "Signal-based stores with state, computed, actions",
+          "immutability": "Maintain immutability using signal.update()"
+        }
       }
     }
   }
