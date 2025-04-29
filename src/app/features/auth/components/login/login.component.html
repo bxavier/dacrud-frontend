@@ -6,10 +6,6 @@
 
     <mat-card-content>
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <div *ngIf="errorMessage" class="error-message">
-          {{ errorMessage }}
-        </div>
-
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Email</mat-label>
           <input matInput type="email" formControlName="email" placeholder="Enter your email" />
@@ -48,7 +44,30 @@
             <span *ngIf="!isLoading">Login</span>
           </button>
         </div>
+
+        <div class="additional-links">
+          <a routerLink="/register">Register</a>
+          <a routerLink="/forgot-password">Forgot Password</a>
+        </div>
       </form>
     </mat-card-content>
   </mat-card>
 </div>
+
+<style>
+  .additional-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 15px;
+  }
+
+  .additional-links a {
+    color: #3f51b5;
+    text-decoration: none;
+  }
+
+  .additional-links a:hover {
+    text-decoration: underline;
+  }
+</style>

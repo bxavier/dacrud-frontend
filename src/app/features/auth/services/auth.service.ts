@@ -4,26 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { apiConfig } from '@core/config/api.config';
-
-export interface User {
-  email: string;
-}
-
-export interface LoginCredentials {
-  email: string;
-  password: string;
-  timezone?: string;
-}
-
-export interface RegisterCredentials {
-  email: string;
-  password: string;
-  confirmPassword?: string;
-}
-
-export interface AuthResponse {
-  token: string;
-}
+import { User, LoginCredentials, RegisterCredentials, AuthResponse } from '../models/auth.models';
 
 @Injectable({
   providedIn: 'root',
