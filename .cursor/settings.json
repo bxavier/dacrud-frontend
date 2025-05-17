@@ -15,6 +15,19 @@
         "linting": "ESLint with Angular rules",
         "formatting": "Prettier with singleQuote, tabWidth: 2, printWidth: 100"
       },
+      "css_methodology": {
+        "approach": "BEM (Block Element Modifier)",
+        "naming": "Use kebab-case for blocks, elements, and modifiers",
+        "nesting": "Use SCSS nesting with & operator for BEM structure",
+        "scss_pattern": {
+          "blocks": "Define top-level block selector first",
+          "elements": "Use &__element for child elements",
+          "modifiers": "Use &--modifier for variations of elements or blocks",
+          "nesting_depth": "Limit SCSS nesting to 3 levels maximum",
+          "example": ".block { &__element { &--modifier {} } }"
+        },
+        "structure": "Group related styles with comment blocks for organization"
+      },
       "state_management": {
         "approach": "Use Angular signals for state",
         "store": "Signal-based stores instead of NGRX/Redux"
@@ -33,7 +46,31 @@
         },
         "folder_structure": {
           "organization": "Feature-based by domain",
-          "layout": "core/, shared/, features/, data-access/"
+          "layout": "core/, shared/, features/, data-access/",
+          "core": {
+            "purpose": "App-wide singleton services, guards, interceptors",
+            "structure": "services/, interceptors/, guards/, components/",
+            "restrictions": "No feature-specific code allowed"
+          },
+          "features": {
+            "purpose": "Domain-specific functionality",
+            "structure": "{feature-name}/components/, {feature-name}/services/, {feature-name}/models/",
+            "module_pattern": "Each feature should be a standalone loadable unit"
+          },
+          "shared": {
+            "purpose": "Reusable components, pipes, directives",
+            "structure": "components/, pipes/, directives/, utils/",
+            "restrictions": "No service dependencies on feature modules"
+          },
+          "data-access": {
+            "purpose": "Data services, state management, API interfaces",
+            "structure": "api/, store/, models/",
+            "pattern": "Follow repository pattern for data access"
+          }
+        },
+        "file_naming": {
+          "pattern": "{name}.{type}.ts",
+          "examples": "user.service.ts, auth.guard.ts, product.model.ts"
         },
         "route_strategy": {
           "lazy_loading": "Lazy load routes",

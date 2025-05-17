@@ -1,0 +1,18 @@
+<div class="notification-stack">
+  @for (notification of notifications(); track notification.id) {
+    <div
+      class="notification-stack__item"
+      [ngClass]="'notification-stack__item--' + notification.type"
+    >
+      <div class="notification-stack__content">
+        <mat-icon class="notification-stack__icon">
+          {{ getIconForType(notification.type) }}
+        </mat-icon>
+        <span class="notification-stack__message">{{ notification.message }}</span>
+      </div>
+      <button mat-icon-button class="notification-stack__close" (click)="close(notification.id)">
+        <mat-icon class="notification-stack__close-icon">close</mat-icon>
+      </button>
+    </div>
+  }
+</div>

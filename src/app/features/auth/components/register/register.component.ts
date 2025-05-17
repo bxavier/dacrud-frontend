@@ -9,7 +9,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AuthService } from '@features/auth/services/auth.service';
-import { SnackbarService } from '@shared/services/snackbar.service';
+import { NotificationService } from '@core/services/notification.service';
 
 @Component({
   selector: 'app-register',
@@ -32,7 +32,7 @@ export class RegisterComponent {
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
   private router = inject(Router);
-  private snackbarService = inject(SnackbarService);
+  private notificationService = inject(NotificationService);
 
   registerForm: FormGroup;
   isLoading = false;
@@ -68,14 +68,17 @@ export class RegisterComponent {
       next: user => {
         console.log('Registration successful:', user);
         this.isLoading = false;
-        this.snackbarService.success('Registration successful! Welcome to our platform.');
+        this.notificationService.show(
+          'Registration successful! Welcome to our platform.',
+          'success',
+        );
         this.router.navigate(['/home']);
       },
       error: error => {
         console.error('Registration component error:', error);
         this.isLoading = false;
         const errorMsg = error.message || 'Registration failed. Please try again.';
-        this.snackbarService.error(errorMsg);
+        this.notificationService.show(errorMsg, 'error');
         // Reset password fields on error
         this.registerForm.get('password')?.reset();
         this.registerForm.get('confirmPassword')?.reset();

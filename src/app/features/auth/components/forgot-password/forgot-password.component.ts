@@ -8,7 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { SnackbarService } from '@shared/services/snackbar.service';
+import { NotificationService } from '@core/services/notification.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -30,7 +30,7 @@ import { SnackbarService } from '@shared/services/snackbar.service';
 export class ForgotPasswordComponent {
   private fb = inject(FormBuilder);
   private router = inject(Router);
-  private snackbarService = inject(SnackbarService);
+  private notificationService = inject(NotificationService);
 
   resetForm: FormGroup;
   isLoading = false;
@@ -53,7 +53,10 @@ export class ForgotPasswordComponent {
 
     setTimeout(() => {
       this.isLoading = false;
-      this.snackbarService.success('Password reset instructions have been sent to your email.');
+      this.notificationService.show(
+        'Password reset instructions have been sent to your email.',
+        'success',
+      );
       this.resetForm.reset();
     }, 1500);
   }

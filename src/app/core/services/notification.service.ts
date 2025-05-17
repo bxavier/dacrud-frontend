@@ -6,7 +6,7 @@ export interface Notification {
   id: string;
   message: string;
   type: NotificationType;
-  timeout?: number;
+  createdAt: number;
 }
 
 @Injectable({
@@ -15,33 +15,37 @@ export interface Notification {
 export class NotificationService {
   private notifications = signal<Notification[]>([]);
 
-  private defaultTimeout: number = 5000;
-
-  show(message: string, type: NotificationType, timeout?: number): void {
-    const notificationTimeout = timeout ?? this.defaultTimeout;
-
-    this.notifications.update(notifications => [
-      ...notifications,
-      {
-        id: Math.random().toString(36).substring(2, 9),
-        message,
-        type,
-        timeout: notificationTimeout,
-      },
-    ]);
-
-    if (notificationTimeout > 0) {
-      setTimeout(() => {
-        this.remove(notifications => notifications[notifications.length - 1].id);
-      }, notificationTimeout);
-    }
+  getNotifications() {
+    return this.notifications;
   }
 
-  remove(idOrFn: string | ((notifications: Notification[]) => string)): void {
-    this.notifications.update(notifications => {
-      const id = typeof idOrFn === 'function' ? idOrFn(notifications) : idOrFn;
+  show(message: string, type: NotificationType = 'info'): void {
+    const notification: Notification = {
+      id: this.generateId(),
+      message,
+      type,
+      createdAt: Date.now(),
+    };
 
-      return notifications.filter(notification => notification.id !== id);
-    });
+    this.notifications.update(current => [...current, notification]);
+
+    // Auto-dismiss non-error notifications after 5 seconds
+    setTimeout(() => {
+      this.remove(notification.id);
+    }, 5000);
+  }
+
+  remove(id: string): void {
+    this.notifications.update(notifications =>
+      notifications.filter(notification => notification.id !== id),
+    );
+  }
+
+  clear(): void {
+    this.notifications.set([]);
+  }
+
+  private generateId(): string {
+    return Math.random().toString(36).substring(2, 9);
   }
 }

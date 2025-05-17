@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -13,11 +13,10 @@ export class AuthService {
   private isAuthenticated = signal<boolean>(false);
   private currentUser = signal<User | null>(null);
 
-  constructor(
-    private router: Router,
-    private http: HttpClient,
-  ) {
-    // Validate token on app initialization
+  private router = inject(Router);
+  private http = inject(HttpClient);
+
+  constructor() {
     this.validateAuthState();
   }
 

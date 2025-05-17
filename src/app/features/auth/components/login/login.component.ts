@@ -9,7 +9,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AuthService } from '@features/auth/services/auth.service';
-import { SnackbarService } from '@shared/services/snackbar.service';
+import { NotificationService } from '@core/services/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -32,7 +32,7 @@ export class LoginComponent {
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
   private router = inject(Router);
-  private snackbarService = inject(SnackbarService);
+  private notificationService = inject(NotificationService);
 
   loginForm: FormGroup;
   isLoading = false;
@@ -57,14 +57,14 @@ export class LoginComponent {
       next: user => {
         console.log('Login successful:', user);
         this.isLoading = false;
-        this.snackbarService.success('Login successful');
+        this.notificationService.show('Login successful', 'success');
         this.router.navigate(['/home']);
       },
       error: error => {
         console.error('Login component error:', error);
         this.isLoading = false;
         const errorMsg = error.message || 'Login failed. Please try again.';
-        this.snackbarService.error(errorMsg);
+        this.notificationService.show(errorMsg, 'error');
         // Reset password field on error
         this.loginForm.get('password')?.reset();
       },
